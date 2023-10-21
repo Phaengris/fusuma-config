@@ -13,6 +13,21 @@ PATH
       pastel (~> 0.8.0)
       zeitwerk (~> 2.6)
 
+PATH
+  remote: /home/fedora/lib/glimmer-dsl-tk
+  specs:
+    glimmer-dsl-tk (0.0.62)
+      glimmer (~> 2.7.3)
+      puts_debuggerer (~> 0.13.1)
+      tk (~> 0.4.0)
+
+PATH
+  remote: /home/fedora/lib/glimmer
+  specs:
+    glimmer (2.7.3)
+      array_include_methods (~> 1.4.0)
+      facets (>= 3.1.0, < 4.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -23,13 +38,6 @@ GEM
     dry-initializer (3.1.1)
     facets (3.1.0)
     ffi (1.15.5)
-    glimmer (2.7.3)
-      array_include_methods (~> 1.4.0)
-      facets (>= 3.1.0, < 4.0.0)
-    glimmer-dsl-tk (0.0.62)
-      glimmer (~> 2.7.3)
-      puts_debuggerer (~> 0.13.1)
-      tk (~> 0.4.0)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -50,6 +58,8 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  glimmer!
+  glimmer-dsl-tk!
   glimte!
 
 BUNDLED WITH

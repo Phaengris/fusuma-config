@@ -3,18 +3,20 @@ width 1000
 height (1000 / 1.618).to_i
 
 frame {
-  notebook {
-    grid sticky: 'nwes', column_weight: 1, row_weight: 1
+  grid sticky: 'nsew', column_weight: 1, row_weight: 1
 
-    Views.gesture_form {
+  notebook {
+    grid sticky: 'nsew', column_weight: 1, row_weight: 1
+
+    Views.gesture_form(text: 'Tap') {
       gesture :tap
     }
-    # Views.gesture_form {
-    #   gesture :hold
-    # }
-    # Views.gesture_form {
-    #   gesture :swipe
-    # }
+    Views.gesture_form(text: 'Hold') {
+      gesture :hold
+    }
+    Views.gesture_form(text: 'Swipe') {
+      gesture :swipe
+    }
     # Views.gesture_form {
     #   gesture :pinch
     # }
@@ -23,3 +25,10 @@ frame {
     # }
   }
 }
+
+on('KeyPress') do |event|
+  case [event.keysym.downcase, event.state]
+  when ['q', 4]
+    Glimte.exit
+  end
+end

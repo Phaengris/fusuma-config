@@ -1,35 +1,34 @@
-# text view_model.gesture_name
-# text 'gesture'
+frame {
+  grid sticky: 'nse', row: 0, column: 0, column_weight: 0, row_weight: 1
+  padding 0
 
-view_model.gesture_supported_fingers.each do |finger|
+  finger_switches
+}
 
-  if view_model.gesture_supported_directions&.any?
-    view_model.gesture_supported_directions.each do |direction|
-      @select_action_form = Views.select_action_form {
-        title view_model.finger_direction_name(finger, direction)
-        config_path :swipe, finger, direction
+frame {
+  padding 20, 0, 0, 0
+  grid row: 0, column: 1, column_weight: 1, row_weight: 1
+
+  view_model.gesture_supported_fingers.each do |finger|
+    if view_model.gesture_supported_directions&.any?
+      frame {
+        padding 0, 0, 0, 10
+
+        direction_switches finger: finger
       }
-      view_model.gesture_supported_states.each do |state|
-        Views.select_action_form {
-          title view_model.state_name(state)
-          visible <=> [@select_action_form, :visible]
-          config_path :swipe, finger, direction, state
+      view_model.gesture_supported_directions.each do |direction|
+        Views.gesture_finger_form {
+          title view_model.finger_config_name(finger, direction)
+          visible <= [view_model.fingers[finger].directions[direction], :currently_edited]
+          config_path view_model.gesture, finger, direction
         }
-      end # states
-    end # directions
-
-  else
-    @select_action_form = Views.select_action_form {
-      title view_model.finger_name(finger)
-      config_path :swipe, finger
-    }
-    view_model.gesture_supported_states.each do |state|
-      Views.select_action_form {
-        title view_model.state_name(state)
-        visible <=> [@select_action_form, :visible]
-        config_path :swipe, finger, state
+      end
+    else
+      Views.gesture_finger_form {
+        title view_model.finger_config_name(finger)
+        visible <= [view_model.fingers[finger], :currently_edited]
+        config_path view_model.gesture, finger
       }
-    end # states
+    end
   end
-
-end # fingers
+}

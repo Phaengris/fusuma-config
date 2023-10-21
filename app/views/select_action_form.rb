@@ -17,7 +17,7 @@ class ViewModels::SelectActionForm
     maximize_add: 'Maximize window',
     maximize_remove: 'Unmaximize window',
     maximize_toggle: 'Toggle maximize window',
-  }.freeze
+  }.freeze # TODO: use i18n
   WINDOW_ACTIONS_BY_NAME = WINDOW_ACTIONS_BY_ID.invert.freeze
 
   attr_accessor :title

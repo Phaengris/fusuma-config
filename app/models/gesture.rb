@@ -4,7 +4,8 @@ class Gesture
   include Singleton
 
   def self.get_instance(gesture_id)
-    Gestures.const_get(gesture_id.to_s.capitalize).instance
+    @instances ||= {}
+    @instances[gesture_id] ||= Gestures.const_get(gesture_id.to_s.capitalize).instance
   end
 
   def supported_fingers
